@@ -70,9 +70,26 @@ function checkUI(){
     }
 }
 
+function filterItems(e){
+    const items=itemList.querySelectorAll('li');
+    const text = e.target.value.toLowerCase();
+    console.log(text);
+
+    items.forEach(item =>{
+        const itemName = item.firstChild.textContent.toLowerCase();
+       if(itemName.indexOf(text) != -1){
+        // console.log(true);
+        item.style.display='flex';
+       }else{
+        // console.log(false);
+        item.style.display='none';
+       }
+    })
+}
+
 //Event Listener
 itemForm.addEventListener('submit',addItem);
 itemList.addEventListener('click',removeItem);
 clearBtn.addEventListener('click',clearItem);
-
+filter.addEventListener('input',filterItems);
 checkUI();
